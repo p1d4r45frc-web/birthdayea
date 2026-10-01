@@ -942,6 +942,26 @@ body::after {
     z-index: 0;
 }
 
+    .hero {
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1,
+.hero .date,
+.hero .subtitle,
+.hero .photo-wrapper,
+.hero .group,
+.hero .scroll {
+    position: relative;
+    z-index: 3;
+}
+
+.photo-wrapper {
+    position: relative;
+    z-index: 3;
+}
+
 }
 
 .shape-ring {
