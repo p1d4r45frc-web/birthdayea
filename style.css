@@ -312,9 +312,9 @@ body::after {
     background:
     linear-gradient(
         135deg,
-        color-mix(in srgb, var(--accent-soft) 28%, transparent),
-        rgba(255, 255, 255, 0.72) 55%,
-        rgba(255, 255, 255, 0.58) 100%
+        color-mix(in srgb, var(--accent-soft) 25%, transparent),
+        rgba(255, 255, 255, 0.58) 55%,
+        rgba(255, 255, 255, 0.42) 100%
     );
 
     backdrop-filter: blur(15px);
