@@ -314,8 +314,8 @@ body::after {
     background:
     linear-gradient(
         145deg,
-        rgba(255, 255, 255, 0.75),
-        color-mix(in srgb, var(--accent-soft) 25%, transparent)
+        color-mix(in srgb, var(--accent) 22%, white),
+        color-mix(in srgb, var(--accent-soft) 55%, white)
     );
 
     backdrop-filter: blur(15px);
@@ -334,7 +334,7 @@ body::after {
 .wish-card:hover {
     transform: translateY(-8px) rotate(-0.5deg);
 
-    background: rgba(255, 255, 255, 0.8);
+    background: color-mix(in srgb, var(--accent-soft) 65%, white);
 
     box-shadow:
         0 20px 50px rgba(0, 0, 0, 0.08);
