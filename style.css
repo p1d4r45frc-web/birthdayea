@@ -265,7 +265,7 @@ body::after {
     padding: 10px 16px;
 
     background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
 
     border-radius: 50px;
 
@@ -312,10 +312,9 @@ body::after {
     background:
     linear-gradient(
         135deg,
-        color-mix(in srgb, var(--accent-soft) 35%, white) 0%,
-        color-mix(in srgb, var(--accent-soft) 20%, white) 45%,
-        rgba(255, 255, 255, 0.85) 65%,
-        rgba(255, 255, 255, 0.75) 100%
+        color-mix(in srgb, var(--accent-soft) 28%, transparent),
+        rgba(255, 255, 255, 0.72) 55%,
+        rgba(255, 255, 255, 0.58) 100%
     );
 
     backdrop-filter: blur(15px);
