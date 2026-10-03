@@ -311,9 +311,9 @@ body::after {
 
     background: linear-gradient(
         145deg,
-        color-mix(in srgb, var(--accent) 18%, white),
-        color-mix(in srgb, var(--accent-soft) 55%, white),
-        color-mix(in srgb, var(--accent) 30%, white)
+        color-mix(in srgb, var(--accent) 35%, white),
+        color-mix(in srgb, var(--accent-soft) 75%, white),
+        color-mix(in srgb, var(--accent) 25%, white)
     );
 
     backdrop-filter: blur(15px);
@@ -332,9 +332,9 @@ body::after {
 
     background: linear-gradient(
         145deg,
-        color-mix(in srgb, var(--accent) 28%, white),
-        color-mix(in srgb, var(--accent-soft) 65%, white),
-        color-mix(in srgb, var(--accent) 20%, white)
+        color-mix(in srgb, var(--accent) 35%, white),
+        color-mix(in srgb, var(--accent-soft) 75%, white) 55%,
+        color-mix(in srgb, var(--accent) 25%, white)
     );
 
     box-shadow: 0 20px 50px
