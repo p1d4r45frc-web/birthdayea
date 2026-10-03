@@ -304,25 +304,21 @@ body::after {
 
 .wish-card {
     position: relative;
-
     min-height: 280px;
     padding: 30px;
-
     border: 1px solid rgba(0, 0, 0, 0.08);
     border-radius: 30px;
 
-    background:
-    linear-gradient(
+    background: linear-gradient(
         145deg,
-        color-mix(in srgb, var(--accent) 22%, white),
-        color-mix(in srgb, var(--accent-soft) 55%, white)
+        color-mix(in srgb, var(--accent) 18%, white),
+        color-mix(in srgb, var(--accent-soft) 55%, white),
+        color-mix(in srgb, var(--accent) 30%, white)
     );
 
     backdrop-filter: blur(15px);
-
     text-align: left;
     cursor: pointer;
-
     overflow: hidden;
 
     transition:
@@ -334,10 +330,15 @@ body::after {
 .wish-card:hover {
     transform: translateY(-8px) rotate(-0.5deg);
 
-    background: color-mix(in srgb, var(--accent-soft) 65%, white);
+    background: linear-gradient(
+        145deg,
+        color-mix(in srgb, var(--accent) 28%, white),
+        color-mix(in srgb, var(--accent-soft) 65%, white),
+        color-mix(in srgb, var(--accent) 20%, white)
+    );
 
-    box-shadow:
-        0 20px 50px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 20px 50px
+        color-mix(in srgb, var(--accent) 25%, transparent);
 }
 
 .wish-number {
