@@ -862,6 +862,16 @@ body::after {
     --accent-soft: #ef91ad;
 }
 
+.wish-card.sky {
+    --accent: #3bb9ff;
+    --accent-soft: #a9e3ff;
+}
+
+.wish-card.turquoise {
+    --accent: #00a896;
+    --accent-soft: #8ee3d5;
+}
+
 @media (max-width: 650px) {
 
     .wishes {
