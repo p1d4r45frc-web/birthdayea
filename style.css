@@ -1247,21 +1247,40 @@ body {
     overflow: hidden;
 }
 
-.letter::before {
-    content: "";
+.letter {
     position: absolute;
-    inset: 12px;
-    border: 1px dashed rgba(0, 0, 0, .12);
-    border-radius: 10px;
-    pointer-events: none;
+    left: 5%;
+    bottom: 5%;
+    width: 90%;
+    height: 95%;
+    padding: 12px;
+    border-radius: 16px 16px 10px 10px;
+    background: #fffdf8;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+
+    transform: translateY(0) scale(.94);
+
+    transition:
+        transform .8s cubic-bezier(.2, .8, .2, 1),
+        box-shadow .8s ease,
+        height .8s cubic-bezier(.2, .8, .2, 1);
+
+    z-index: 2;
+    overflow: hidden;
 }
 
 .letter-inner {
     position: relative;
     height: 100%;
-    padding: 25px 30px;
+    padding: 28px 35px;
+
     text-align: left;
-    overflow: hidden;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    scrollbar-width: thin;
+    scrollbar-color: #ff9ab7 transparent;
 }
 
 .letter-small {
@@ -1385,7 +1404,8 @@ body {
 }
 
 .envelope.opened .letter {
-    transform: translateY(-145px) scale(1);
+    transform: translateY(-145px) scale(1.08);
+    height: 135%;
     box-shadow: 0 25px 55px rgba(0, 0, 0, .18);
     z-index: 4;
 }
@@ -1505,12 +1525,14 @@ max-width: 600px {
     }
 
     .envelope.opened .letter {
-        transform: translateY(-105px) scale(1);
-    }
+    transform: translateY(-105px) scale(1.03);
+    height: 140%;
+}
 
     .letter-inner {
-        padding: 17px 20px;
-    }
+    padding: 20px 22px;
+    overflow-y: auto;
+}
 
     .letter h3 {
         font-size: 20px;
