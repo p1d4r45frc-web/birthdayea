@@ -1293,26 +1293,29 @@ body {
 }
 
 .letter h3 {
-    margin: 0 0 14px;
+    margin: 0 0 18px;
     font-family: Georgia, serif;
-    font-size: 27px;
-    line-height: 1;
+    font-size: 28px;
+    line-height: 1.05;
 }
 
 .letter p {
-    margin: 9px 0;
-    max-width: 320px;
+    margin: 12px 0;
+    max-width: 330px;
     font-size: 11px;
-    line-height: 1.45;
+    line-height: 1.55;
     color: #555;
 }
 
 .letter-sign {
-    position: absolute;
-    right: 28px;
-    bottom: 20px;
+    position: relative;
+    margin-top: 25px;
+    margin-left: auto;
+    width: fit-content;
+
     font-family: Georgia, serif;
     font-size: 13px;
+    line-height: 1.4;
     text-align: right;
     color: #555;
 }
@@ -1536,18 +1539,18 @@ max-width: 600px {
 
     .letter h3 {
         font-size: 20px;
+        margin-bottom: 14px;
     }
 
     .letter p {
         font-size: 9px;
-        line-height: 1.35;
-        max-width: 240px;
+        line-height: 1.45;
+        margin: 9px 0;
     }
 
     .letter-sign {
-        right: 20px;
-        bottom: 12px;
         font-size: 10px;
+        margin-top: 18px;
     }
 
     .envelope-label {
