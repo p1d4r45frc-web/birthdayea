@@ -1882,3 +1882,330 @@ max-width: 600px {
         }
     }
 }
+
+/* =====================================================
+   ЕСЛИ БЫ ЕВГЕНИЯ АЛЕКСАНДРОВНА БЫЛА...
+   ===================================================== */
+
+.if-section {
+    position: relative;
+    padding: 130px 20px 150px;
+    overflow: hidden;
+}
+
+.if-heading {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto 55px;
+    text-align: center;
+}
+
+.if-heading span {
+    display: block;
+    margin-bottom: 15px;
+    color: #ff4f8b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.if-heading h2 {
+    margin: 0;
+    font-family: Georgia, serif;
+    font-size: clamp(38px, 6vw, 70px);
+    line-height: .98;
+    letter-spacing: -2px;
+    color: #222;
+}
+
+.if-heading p {
+    margin: 22px auto 0;
+    color: #777;
+    font-size: 13px;
+}
+
+/* СТЕКЛО */
+
+.if-glass {
+    position: relative;
+    z-index: 2;
+
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 35px;
+
+    width: min(1000px, 94vw);
+    min-height: 500px;
+    margin: auto;
+    padding: 28px;
+
+    box-sizing: border-box;
+
+    background: rgba(255, 255, 255, .25);
+    border: 1px solid rgba(255, 255, 255, .55);
+    border-radius: 38px;
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 30px 80px rgba(0, 0, 0, .08),
+        inset 0 1px 0 rgba(255,255,255,.65);
+}
+
+/* КНОПКИ */
+
+.if-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.if-button {
+    position: relative;
+
+    width: 100%;
+    min-height: 62px;
+
+    padding: 0 22px;
+
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 20px;
+
+    background: rgba(255,255,255,.28);
+
+    color: #333;
+    font-family: inherit;
+    font-size: 15px;
+    text-align: left;
+
+    cursor: pointer;
+
+    transition:
+        transform .35s ease,
+        background .35s ease,
+        box-shadow .35s ease;
+}
+
+.if-button span {
+    color: #aaa;
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.if-button:hover {
+    transform: translateX(7px);
+    background: rgba(255,255,255,.52);
+    box-shadow: 0 12px 30px rgba(0,0,0,.07);
+}
+
+.if-button.active {
+    transform: translateX(10px);
+    background: rgba(255,255,255,.65);
+    box-shadow: 0 15px 35px rgba(0,0,0,.09);
+}
+
+/* РЕЗУЛЬТАТ */
+
+.if-result {
+    position: relative;
+    min-height: 440px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.15);
+}
+
+/* ФОТО */
+
+.if-image-wrap {
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    opacity: 0;
+    transform: scale(.94);
+
+    transition:
+        opacity .65s ease,
+        transform .8s cubic-bezier(.2,.8,.2,1);
+}
+
+.if-image-wrap::after {
+    content: "";
+
+    position: absolute;
+    inset: -30px;
+
+    background: rgba(255,255,255,.12);
+
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+
+    pointer-events: none;
+}
+
+.if-image {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: .7;
+
+    /* мягкие края */
+    -webkit-mask-image: radial-gradient(
+        ellipse at center,
+        black 45%,
+        rgba(0,0,0,.75) 65%,
+        transparent 100%
+    );
+
+    mask-image: radial-gradient(
+        ellipse at center,
+        black 45%,
+        rgba(0,0,0,.75) 65%,
+        transparent 100%
+    );
+}
+
+.if-result.has-image .if-image-wrap {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* ТЕКСТ ПОВЕРХ ФОТО */
+
+.if-result-text {
+    position: relative;
+    z-index: 3;
+
+    width: min(440px, 80%);
+
+    padding: 35px;
+
+    text-align: center;
+
+    border-radius: 30px;
+
+    background: rgba(255,255,255,.48);
+    border: 1px solid rgba(255,255,255,.6);
+
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+
+    box-shadow: 0 20px 50px rgba(0,0,0,.08);
+
+    transition:
+        transform .5s ease,
+        opacity .5s ease;
+}
+
+.if-result-small {
+    display: block;
+
+    margin-bottom: 12px;
+
+    color: #ff4f8b;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.if-result-title {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1;
+}
+
+.if-result-description {
+    margin: 18px auto 0;
+
+    color: #555;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* АНИМАЦИЯ СМЕНЫ */
+
+.if-result.changing .if-result-text {
+    opacity: 0;
+    transform: translateY(12px);
+}
+
+/* МОБИЛКА */
+
+max-width: 700px {
+
+    .if-section {
+        padding: 90px 15px 110px;
+    }
+
+    .if-heading h2 {
+        font-size: 42px;
+    }
+
+    .if-glass {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 18px;
+        border-radius: 28px;
+    }
+
+    .if-buttons {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+    }
+
+    .if-button {
+        min-height: 58px;
+        padding: 0 14px;
+        gap: 8px;
+        font-size: 12px;
+        border-radius: 16px;
+    }
+
+    .if-button span {
+        font-size: 8px;
+    }
+
+    .if-button:hover,
+    .if-button.active {
+        transform: none;
+    }
+
+    .if-result {
+        min-height: 400px;
+        border-radius: 24px;
+    }
+
+    .if-result-text {
+        width: 78%;
+        padding: 25px 20px;
+        border-radius: 24px;
+    }
+
+    .if-result-title {
+        font-size: 34px;
+    }
+}
