@@ -571,10 +571,19 @@
 
 <script src="script.js"></script>
     <script>
+
 const ifButtons = document.querySelectorAll('.if-button');
 const ifResult = document.querySelector('.if-result');
+
 const ifImage = document.querySelector('.if-image');
+const ifColor = document.querySelector('.if-color');
+
+const ifAudioBox = document.querySelector('.if-audio-box');
+const ifAudio = document.querySelector('.if-audio');
+const ifAudioTitle = document.querySelector('.if-audio-title');
+
 const ifTitle = document.querySelector('.if-result-title');
+const ifSubtitle = document.querySelector('.if-result-subtitle');
 const ifDescription = document.querySelector('.if-result-description');
 
 ifButtons.forEach(button => {
@@ -591,24 +600,68 @@ ifButtons.forEach(button => {
 
             button.classList.add('active');
 
+            const type = button.dataset.type;
             const title = button.dataset.title;
+            const subtitle = button.dataset.subtitle;
             const text = button.dataset.text;
-            const image = button.dataset.image;
 
             ifTitle.textContent = title;
+            ifSubtitle.textContent = subtitle;
             ifDescription.textContent = text;
 
-            ifImage.src = image;
-            ifImage.alt = 'Если бы Евгения Александровна была ' + title;
+            /* Сбрасываем всё */
+
+            ifResult.classList.remove(
+                'show-image',
+                'show-color',
+                'show-audio'
+            );
+
+            ifImage.src = '';
+            ifAudio.pause();
+            ifAudio.querySelector('source').src = '';
+
+            /* КАРТИНКА */
+
+            if (type === 'image') {
+
+                ifImage.src = button.dataset.image;
+                ifImage.alt = subtitle;
+
+                ifResult.classList.add('show-image');
+            }
+
+            /* ЦВЕТ */
+
+            if (type === 'color') {
+
+                ifColor.style.background = button.dataset.color;
+
+                ifResult.classList.add('show-color');
+            }
+
+            /* ПЕСНЯ */
+
+            if (type === 'audio') {
+
+                ifAudioTitle.textContent = subtitle;
+
+                ifAudio.querySelector('source').src =
+                    button.dataset.audio;
+
+                ifAudio.load();
+
+                ifResult.classList.add('show-audio');
+            }
 
             ifResult.classList.remove('changing');
-            ifResult.classList.add('has-image');
 
         }, 250);
 
     });
 
 });
+
 </script>
 </body>
 </html>
