@@ -1835,3 +1835,50 @@ max-width: 600px {
         opacity: 0;
     }
 }
+
+/* ===== АНИМАЦИЯ КОНВЕРТА НА МОБИЛКЕ ===== */
+
+max-width: 600px {
+
+    /* Письмо выезжает плавно */
+    .envelope .letter {
+        transition:
+            transform 0.8s cubic-bezier(0.22, 0.8, 0.25, 1),
+            box-shadow 0.8s ease,
+            opacity 0.5s ease !important;
+    }
+
+    .envelope.opened .letter {
+        transform: translateY(-85px) scale(1) !important;
+    }
+
+    /* Треугольная крышка */
+    .envelope.opened .envelope-flap {
+        display: block !important;
+        pointer-events: none !important;
+        animation: envelopeFlapOpenMobile
+            0.8s cubic-bezier(0.22, 0.8, 0.25, 1)
+            forwards !important;
+    }
+
+    @keyframes envelopeFlapOpenMobile {
+
+        0% {
+            transform: rotateX(0deg);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        65% {
+            transform: rotateX(150deg);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        100% {
+            transform: rotateX(180deg);
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
