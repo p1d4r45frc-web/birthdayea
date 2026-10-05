@@ -1569,3 +1569,87 @@ body {
         display: none;
     }
 }
+/* ===== ФИНАЛЬНЫЙ ФИКС КОНВЕРТА ===== */
+
+/* Закрытый конверт */
+.envelope:not(.opened) .letter {
+    z-index: 1 !important;
+    opacity: 0 !important;
+}
+
+.envelope:not(.opened) .envelope-back {
+    z-index: 1 !important;
+}
+
+.envelope:not(.opened) .envelope-front {
+    z-index: 4 !important;
+    opacity: 1 !important;
+    clip-path: polygon(
+        0 0,
+        50% 55%,
+        100% 0,
+        100% 100%,
+        0 100%
+    ) !important;
+}
+
+.envelope:not(.opened) .envelope-flap {
+    z-index: 5 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* ===== ОТКРЫТЫЙ КОНВЕРТ ===== */
+
+/* Письмо ПОЛНОСТЬЮ поверх конверта */
+.envelope.opened .letter {
+    z-index: 999 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: #fffdf8 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Самое главное — полностью убрать переднюю часть */
+.envelope.opened .envelope-front {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: 0 !important;
+}
+
+/* И полностью убрать крышку */
+.envelope.opened .envelope-flap {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    z-index: -1 !important;
+}
+
+/* Текст письма */
+.envelope.opened .letter-inner {
+    z-index: 1000 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* Надпись НА САМОМ конверте */
+.envelope.opened .envelope-label {
+    display: none !important;
+}
+
+/* Подсказка под конвертом */
+.envelope.opened ~ .envelope-hint {
+    display: none !important;
+}
+
+/* Если подсказка находится внутри сцены */
+.envelope.opened .envelope-hint {
+    display: none !important;
+}
