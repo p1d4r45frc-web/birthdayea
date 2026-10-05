@@ -1783,3 +1783,160 @@ max-width: 600px {
     animation: none !important;
     transform: none !important;
 }
+
+/* =========================================
+   ФИНАЛЬНЫЙ ФИКС СЛОЁВ КОНВЕРТА
+   ========================================= */
+
+/* ЗАКРЫТЫЙ КОНВЕРТ:
+   письмо полностью спрятано за конвертом */
+
+.envelope:not(.opened) .letter {
+    z-index: 1 !important;
+}
+
+.envelope:not(.opened) .envelope-back {
+    z-index: 2 !important;
+}
+
+.envelope:not(.opened) .envelope-front {
+    z-index: 4 !important;
+
+    /* НЕ ПРОЗРАЧНЫЙ */
+    background:
+        linear-gradient(
+            145deg,
+            #ff7398,
+            #ffb04d
+        ) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    opacity: 1 !important;
+}
+
+.envelope:not(.opened) .envelope-flap {
+    z-index: 5 !important;
+
+    /* Тоже полностью непрозрачная */
+    background:
+        linear-gradient(
+            145deg,
+            #ff8eaa,
+            #ffad4d
+        ) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* =========================================
+   ОТКРЫТЫЙ КОНВЕРТ
+   ========================================= */
+
+/* ПИСЬМО СТАНОВИТСЯ ГЛАВНЫМ */
+
+.envelope.opened .letter {
+    z-index: 50 !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    transform:
+        translateY(-85px)
+        scale(1) !important;
+}
+
+/* ЗАКРЫВАШКА:
+   сначала уходит,
+   потом полностью исчезает */
+
+.envelope.opened .envelope-flap {
+    z-index: 0 !important;
+
+    opacity: 0 !important;
+    visibility: hidden !important;
+
+    pointer-events: none !important;
+
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    transform: rotateX(180deg) !important;
+}
+
+/* ПЕРЕДНЯЯ ЧАСТЬ КОНВЕРТА
+   остаётся ТОЛЬКО под письмом */
+
+.envelope.opened .envelope-front {
+    z-index: 2 !important;
+
+    opacity: 1 !important;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ff7197,
+            #ffad4d
+        ) !important;
+
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* САМО ПИСЬМО ПОВЕРХ ВСЕГО */
+
+.envelope.opened .letter-inner {
+    position: relative;
+    z-index: 100 !important;
+
+    opacity: 1 !important;
+
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* УБИРАЕМ СТАРУЮ АНИМАЦИЮ ПАРЕНИЯ
+   ПОСЛЕ ОТКРЫТИЯ */
+
+.envelope.opened {
+    animation: none !important;
+}
+
+/* =========================================
+   МОБИЛКА
+   ========================================= */
+
+max-width: 600px {
+
+    .envelope.opened .letter {
+        left: 4% !important;
+        width: 92% !important;
+        height: 125% !important;
+
+        transform:
+            translateY(-85px)
+            scale(1) !important;
+    }
+
+    .envelope.opened .envelope-flap {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        display: none !important;
+    }
+
+    .envelope.opened .letter-inner {
+        padding: 22px 24px 25px !important;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+}
