@@ -1099,3 +1099,454 @@ body {
     color: #8bcf00;
     font-size: 20px;
 }
+
+/* =========================
+   ИНТЕРАКТИВНЫЙ КОНВЕРТ
+   ========================= */
+
+.envelope-section {
+    position: relative;
+    min-height: 850px;
+    padding: 150px 20px 170px;
+    text-align: center;
+    overflow: hidden;
+}
+
+.envelope-title {
+    margin-top: 18px;
+    font-size: clamp(42px, 7vw, 82px);
+    line-height: .95;
+    letter-spacing: -3px;
+}
+
+.envelope-title i {
+    font-family: Georgia, serif;
+    font-weight: 400;
+}
+
+.envelope-subtitle {
+    max-width: 500px;
+    margin: 25px auto 0;
+    color: #777;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* СЦЕНА */
+
+.envelope-scene {
+    position: relative;
+    width: min(650px, 92vw);
+    height: 500px;
+    margin: 55px auto 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1200px;
+}
+
+/* МЯГКОЕ СВЕЧЕНИЕ ПОД КОНВЕРТОМ */
+
+.envelope-scene::before {
+    content: "";
+    position: absolute;
+    width: 390px;
+    height: 170px;
+    bottom: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ff4f8b;
+    opacity: .16;
+    filter: blur(55px);
+    border-radius: 50%;
+    animation: envelopeGlow 4s ease-in-out infinite;
+}
+
+@keyframes envelopeGlow {
+    0%, 100% {
+        transform: translateX(-50%) scale(.9);
+        opacity: .12;
+    }
+
+    50% {
+        transform: translateX(-50%) scale(1.15);
+        opacity: .2;
+    }
+}
+
+/* САМИЙ КОНВЕРТ */
+
+.envelope {
+    position: relative;
+    width: 430px;
+    height: 290px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    animation: envelopeFloat 4s ease-in-out infinite;
+    transition: filter .4s ease;
+    z-index: 5;
+}
+
+.envelope:hover {
+    filter: drop-shadow(0 25px 35px rgba(255, 79, 139, .22));
+}
+
+.envelope:focus-visible {
+    outline: 3px solid #ff4f8b;
+    outline-offset: 12px;
+    border-radius: 25px;
+}
+
+@keyframes envelopeFloat {
+    0%, 100% {
+        transform: translateY(0) rotateX(0);
+    }
+
+    50% {
+        transform: translateY(-13px) rotateX(1deg);
+    }
+}
+
+/* ЗАДНЯЯ ЧАСТЬ */
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255, 117, 156, .95),
+            rgba(255, 182, 72, .92)
+        );
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, .13),
+        inset 0 1px 0 rgba(255, 255, 255, .65);
+}
+
+/* БОЛЬШОЙ ВЫЕЗЖАЮЩИЙ ЛИСТ */
+
+.letter {
+    position: absolute;
+    left: 7%;
+    bottom: 5%;
+    width: 86%;
+    height: 88%;
+    padding: 12px;
+    border-radius: 16px 16px 10px 10px;
+    background: #fffdf8;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .15);
+    transform: translateY(0) scale(.94);
+    transition:
+        transform .8s cubic-bezier(.2, .8, .2, 1),
+        box-shadow .8s ease;
+    z-index: 2;
+    overflow: hidden;
+}
+
+.letter::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 1px dashed rgba(0, 0, 0, .12);
+    border-radius: 10px;
+    pointer-events: none;
+}
+
+.letter-inner {
+    position: relative;
+    height: 100%;
+    padding: 25px 30px;
+    text-align: left;
+    overflow: hidden;
+}
+
+.letter-small {
+    display: block;
+    margin-bottom: 12px;
+    font-size: 9px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #999;
+}
+
+.letter h3 {
+    margin: 0 0 14px;
+    font-family: Georgia, serif;
+    font-size: 27px;
+    line-height: 1;
+}
+
+.letter p {
+    margin: 9px 0;
+    max-width: 320px;
+    font-size: 11px;
+    line-height: 1.45;
+    color: #555;
+}
+
+.letter-sign {
+    position: absolute;
+    right: 28px;
+    bottom: 20px;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    text-align: right;
+    color: #555;
+}
+
+.letter-sign strong {
+    color: #ff4f8b;
+}
+
+/* ПЕРЕДНЯЯ ЧАСТЬ КОНВЕРТА */
+
+.envelope-front {
+    position: absolute;
+    inset: 0;
+    border-radius: 22px;
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255, 255, 255, .18),
+            rgba(255, 91, 133, .35)
+        );
+    backdrop-filter: blur(5px);
+    z-index: 3;
+    clip-path: polygon(
+        0 0,
+        50% 57%,
+        100% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+/* КРЫШКА КОНВЕРТА */
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 62%;
+    border-radius: 22px 22px 0 0;
+    background:
+        linear-gradient(
+            145deg,
+            #ff8eaa,
+            #ffb34d
+        );
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        50% 100%
+    );
+    transform-origin: top center;
+    transition:
+        transform .85s cubic-bezier(.2, .8, .2, 1),
+        filter .4s ease;
+    z-index: 5;
+    backface-visibility: hidden;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+}
+
+/* НАДПИСЬ */
+
+.envelope-label {
+    position: absolute;
+    z-index: 6;
+    left: 50%;
+    bottom: 40px;
+    transform: translateX(-50%);
+    width: 75%;
+    color: white;
+    font-size: 10px;
+    line-height: 1.6;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    text-shadow: 0 1px 4px rgba(0,0,0,.12);
+    transition: opacity .35s ease;
+}
+
+/* ОТКРЫТОЕ СОСТОЯНИЕ */
+
+.envelope.opened {
+    animation: none;
+}
+
+.envelope.opened .envelope-flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.opened .letter {
+    transform: translateY(-145px) scale(1);
+    box-shadow: 0 25px 55px rgba(0, 0, 0, .18);
+    z-index: 4;
+}
+
+.envelope.opened .envelope-label {
+    opacity: 0;
+}
+
+/* ПОДСКАЗКА */
+
+.envelope-hint {
+    margin-top: 0;
+    color: #888;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: opacity .4s ease;
+}
+
+.envelope-hint span {
+    display: inline-block;
+    margin-right: 5px;
+    color: #ff4f8b;
+    animation: hintArrow 1.5s ease-in-out infinite;
+}
+
+@keyframes hintArrow {
+    0%, 100% {
+        transform: translate(0, 0);
+    }
+
+    50% {
+        transform: translate(4px, -4px);
+    }
+}
+
+.envelope.opened ~ .envelope-hint {
+    opacity: 0;
+}
+
+/* ЛЕТАЮЩИЕ СИМВОЛЫ */
+
+.envelope-spark {
+    position: absolute;
+    color: #ff4f8b;
+    font-size: 20px;
+    pointer-events: none;
+    animation: sparkFloat 4s ease-in-out infinite;
+}
+
+.spark-1 {
+    top: 80px;
+    left: 17%;
+    animation-delay: -1s;
+}
+
+.spark-2 {
+    top: 120px;
+    right: 15%;
+    color: #ff9d32;
+    animation-delay: -2.5s;
+}
+
+.spark-3 {
+    bottom: 100px;
+    left: 22%;
+    color: #7541d8;
+    animation-delay: -3s;
+}
+
+.spark-4 {
+    bottom: 120px;
+    right: 21%;
+    color: #20b85a;
+    animation-delay: -1.8s;
+}
+
+@keyframes sparkFloat {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg) scale(1);
+        opacity: .45;
+    }
+
+    50% {
+        transform: translateY(-22px) rotate(20deg) scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* МОБИЛКА */
+
+max-width: 600px {
+
+    .envelope-section {
+        min-height: 730px;
+        padding: 110px 15px 120px;
+    }
+
+    .envelope-title {
+        font-size: 43px;
+        letter-spacing: -2px;
+    }
+
+    .envelope-subtitle {
+        font-size: 13px;
+        padding: 0 15px;
+    }
+
+    .envelope-scene {
+        height: 410px;
+        margin-top: 35px;
+    }
+
+    .envelope {
+        width: 320px;
+        height: 215px;
+    }
+
+    .envelope.opened .letter {
+        transform: translateY(-105px) scale(1);
+    }
+
+    .letter-inner {
+        padding: 17px 20px;
+    }
+
+    .letter h3 {
+        font-size: 20px;
+    }
+
+    .letter p {
+        font-size: 9px;
+        line-height: 1.35;
+        max-width: 240px;
+    }
+
+    .letter-sign {
+        right: 20px;
+        bottom: 12px;
+        font-size: 10px;
+    }
+
+    .envelope-label {
+        bottom: 27px;
+        font-size: 8px;
+        letter-spacing: 1.8px;
+    }
+
+    .spark-1 {
+        left: 5%;
+    }
+
+    .spark-2 {
+        right: 4%;
+    }
+
+    .spark-3 {
+        left: 8%;
+    }
+
+    .spark-4 {
+        right: 7%;
+    }
+}
