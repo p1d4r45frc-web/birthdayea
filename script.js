@@ -30,3 +30,15 @@ animatedElements.forEach((element) => {
     element.classList.add("hidden");
     observer.observe(element);
 });
+
+// =========================
+// ИНТЕРАКТИВНЫЙ КОНВЕРТ
+// =========================
+
+const envelope = document.querySelector(".envelope");
+
+if (envelope) {
+    envelope.addEventListener("click", () => {
+        envelope.classList.toggle("opened");
+    });
+}
