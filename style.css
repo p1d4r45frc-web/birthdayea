@@ -1569,12 +1569,13 @@ body {
         display: none;
     }
 }
-/* ===== ФИНАЛЬНЫЙ ФИКС КОНВЕРТА ===== */
+/* ===== НОРМАЛЬНЫЙ ФИНАЛЬНЫЙ ФИКС КОНВЕРТА ===== */
 
-/* Закрытый конверт */
+/* ЗАКРЫТЫЙ КОНВЕРТ */
 .envelope:not(.opened) .letter {
     z-index: 1 !important;
-    opacity: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
 .envelope:not(.opened) .envelope-back {
@@ -1584,9 +1585,11 @@ body {
 .envelope:not(.opened) .envelope-front {
     z-index: 4 !important;
     opacity: 1 !important;
+    visibility: visible !important;
+    background: linear-gradient(145deg, #ff7398, #ffb04d) !important;
     clip-path: polygon(
         0 0,
-        50% 55%,
+        50% 57%,
         100% 0,
         100% 100%,
         0 100%
@@ -1597,41 +1600,60 @@ body {
     z-index: 5 !important;
     opacity: 1 !important;
     visibility: visible !important;
+    display: block !important;
 }
 
-/* ===== ОТКРЫТЫЙ КОНВЕРТ ===== */
+/* ОТКРЫТЫЙ КОНВЕРТ */
 
-/* Письмо ПОЛНОСТЬЮ поверх конверта */
+/* письмо выходит плавно */
 .envelope.opened .letter {
-    z-index: 999 !important;
+    z-index: 50 !important;
     opacity: 1 !important;
     visibility: visible !important;
-    background: #fffdf8 !important;
-    filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
+    transform: translateY(-85px) scale(1) !important;
+
+    transition:
+        transform .8s cubic-bezier(.22, .8, .25, 1),
+        box-shadow .8s ease,
+        opacity .4s ease !important;
 }
 
-/* Самое главное — полностью убрать переднюю часть */
+/* цветная передняя часть НЕ исчезает —
+   она остаётся красивой частью конверта,
+   но находится ПОД письмом */
 .envelope.opened .envelope-front {
-    opacity: 0 !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
-    z-index: 0 !important;
+    z-index: 4 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    background: linear-gradient(145deg, #ff7398, #ffb04d) !important;
+    clip-path: polygon(
+        0 0,
+        50% 57%,
+        100% 0,
+        100% 100%,
+        0 100%
+    ) !important;
 }
 
-/* И полностью убрать крышку */
+/* крышка плавно откидывается,
+   но НЕ используем display:none */
 .envelope.opened .envelope-flap {
-    display: none !important;
+    z-index: 0 !important;
     opacity: 0 !important;
     visibility: hidden !important;
     pointer-events: none !important;
-    z-index: -1 !important;
+
+    transform: rotateX(180deg) !important;
+
+    transition:
+        transform .7s cubic-bezier(.22, .8, .25, 1),
+        opacity .45s ease,
+        visibility .45s ease !important;
 }
 
-/* Текст письма */
+/* текст письма */
 .envelope.opened .letter-inner {
-    z-index: 1000 !important;
+    z-index: 100 !important;
     opacity: 1 !important;
     visibility: visible !important;
     filter: none !important;
@@ -1639,17 +1661,43 @@ body {
     -webkit-backdrop-filter: none !important;
 }
 
-/* Надпись НА САМОМ конверте */
+/* надпись на самом конверте */
 .envelope.opened .envelope-label {
-    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity .4s ease, visibility .4s ease !important;
 }
 
-/* Подсказка под конвертом */
+/* подсказка исчезает плавно */
 .envelope.opened ~ .envelope-hint {
-    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transition: opacity .5s ease, visibility .5s ease !important;
 }
 
-/* Если подсказка находится внутри сцены */
+/* если подсказка находится внутри envelope-scene */
 .envelope.opened .envelope-hint {
-    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+/* МОБИЛКА */
+max-width: 600px {
+    .envelope.opened .letter {
+        transform: translateY(-85px) scale(1) !important;
+        transition:
+            transform .8s cubic-bezier(.22, .8, .25, 1),
+            box-shadow .8s ease,
+            opacity .4s ease !important;
+    }
+
+    .envelope.opened .envelope-flap {
+        display: block !important;
+        transform: rotateX(180deg) !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+    }
 }
