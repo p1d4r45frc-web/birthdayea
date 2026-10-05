@@ -1575,3 +1575,211 @@ max-width: 600px {
         right: 7%;
     }
 }
+
+/* =================================
+   ФИКС КОНВЕРТА — ОТКРЫТИЕ
+   ================================= */
+
+/* В закрытом состоянии */
+.envelope .letter {
+    z-index: 2;
+}
+
+/* При открытии лист становится главным */
+.envelope.opened .letter {
+    z-index: 20;
+
+    left: 4%;
+    width: 92%;
+
+    height: 125%;
+
+    transform:
+        translateY(-105px)
+        scale(1);
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, .20);
+}
+
+/* Крышка ПОЛНОСТЬЮ уходит назад */
+.envelope.opened .envelope-flap {
+    z-index: 1;
+    opacity: 0;
+
+    transform: rotateX(180deg);
+
+    pointer-events: none;
+}
+
+/* Передняя часть тоже уходит назад,
+   чтобы она не перекрывала письмо */
+.envelope.opened .envelope-front {
+    z-index: 1;
+}
+
+/* Сам текст всегда поверх */
+.envelope.opened .letter-inner {
+    position: relative;
+    z-index: 30;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Убираем старую подпись */
+.envelope.opened .envelope-label {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* =================================
+   МОБИЛЬНАЯ ВЕРСИЯ
+   ================================= */
+
+max-width: 600px {
+
+    .envelope-section {
+        min-height: 760px;
+        padding-top: 100px;
+        padding-bottom: 100px;
+    }
+
+    .envelope-scene {
+        width: 100%;
+        height: 440px;
+        margin-top: 45px;
+    }
+
+    .envelope {
+        width: 320px;
+        height: 215px;
+    }
+
+    /* Нормальный размер письма */
+    .envelope.opened .letter {
+        left: 4%;
+        width: 92%;
+
+        height: 125%;
+
+        transform:
+            translateY(-85px)
+            scale(1);
+
+        border-radius: 18px;
+    }
+
+    /* Сам текст */
+    .envelope.opened .letter-inner {
+        height: 100%;
+
+        padding:
+            22px
+            24px
+            25px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .letter-small {
+        font-size: 8px;
+        margin-bottom: 12px;
+    }
+
+    .letter h3 {
+        font-size: 22px;
+        line-height: 1.05;
+        margin-bottom: 17px;
+    }
+
+    .letter p {
+        max-width: none;
+
+        font-size: 10px;
+        line-height: 1.5;
+
+        margin: 10px 0;
+    }
+
+    .letter-sign {
+        position: relative;
+
+        margin-top: 22px;
+        margin-left: auto;
+
+        font-size: 11px;
+    }
+
+    /* Крышка исчезает полностью,
+       а не висит треугольником */
+    .envelope.opened .envelope-flap {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* Подсказка исчезает */
+    .envelope.opened ~ .envelope-hint {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+max-width: 600px {
+
+    .envelope.opened .envelope-front {
+        opacity: .25;
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    .envelope.opened .envelope-back {
+        z-index: 0;
+    }
+
+    .envelope.opened .letter {
+        z-index: 50;
+    }
+}
+
+/* =================================
+   УБИРАЕМ РАЗМЫТИЕ ПИСЬМА
+   ================================= */
+
+.envelope-front {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    filter: none !important;
+}
+
+.envelope .letter {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.envelope.opened .letter {
+    z-index: 100 !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.envelope.opened .envelope-front {
+    z-index: 1 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+.envelope.opened .envelope-flap {
+    z-index: 0 !important;
+    opacity: 0;
+    filter: none !important;
+}
+
+.envelope.opened {
+    animation: none !important;
+    transform: none !important;
+}
