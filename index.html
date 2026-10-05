@@ -319,7 +319,7 @@
     <div class="if-heading">
         <span>а что, если...</span>
         <h2>Евгения Александровна была бы...</h2>
-        <p>нажми на вариант — и посмотри, что получилось</p>
+        <p>нажмите на вариант — и посмотрите, что получилось</p>
     </div>
 
     <div class="if-glass">
@@ -327,49 +327,61 @@
         <div class="if-buttons">
 
             <button class="if-button"
+                    data-type="image"
                     data-title="местом"
-                    data-text="Местом, куда хочется возвращаться снова и снова."
+                    data-subtitle="летнее утро на террасе"
+                    data-text="Местом, где тихое летнее утро начинается с чашки кофе и никуда не нужно спешить. Тёплым, спокойным и по-своему уютным."
                     data-image="place.jpg">
                 <span>01</span>
                 местом
             </button>
 
             <button class="if-button"
+                    data-type="color"
                     data-title="цветом"
-                    data-text="Цветом, который невозможно не заметить."
-                    data-image="color.jpg">
+                    data-subtitle="Marlot 19-1534 TCX"
+                    data-text="Глубокий, благородный и элегантный оттенок. Именно таким кажется её характер — сдержанным, уверенным и совершенно не требующим лишнего внимания."
+                    data-color="#681A2B">
                 <span>02</span>
                 цветом
             </button>
 
             <button class="if-button"
+                    data-type="audio"
                     data-title="песней"
-                    data-text="Песней, которую почему-то хочется включить ещё раз."
-                    data-image="song.jpg">
+                    data-subtitle="Hi-Fi — «Не дано»"
+                    data-text="В ней есть какое-то знакомое настроение — немного ностальгии, немного тепла и что-то, что остаётся в памяти."
+                    data-audio="hi-fi-ne-dano.mp3">
                 <span>03</span>
                 песней
             </button>
 
             <button class="if-button"
+                    data-type="image"
                     data-title="фильмом"
-                    data-text="Фильмом, который всегда хочется пересмотреть."
-                    data-image="film.jpg">
+                    data-subtitle="«Москва слезам не верит» · 1979"
+                    data-text="Потому что главная героиня — сильная женщина, которая сама строит свою жизнь, не боится трудностей и при этом остаётся настоящей и живой."
+                    data-image="moscow.jpg">
                 <span>04</span>
                 фильмом
             </button>
 
             <button class="if-button"
+                    data-type="image"
                     data-title="цветком"
-                    data-text="Цветком, который делает пространство вокруг немного теплее."
-                    data-image="flower.jpg">
+                    data-subtitle="White O'Hara"
+                    data-text="Нежная и светлая, как отношение к нам. Но за этой нежностью есть характер — свои «колючки», которые напоминают, что доброта совершенно не означает мягкость во всём."
+                    data-image="white-ohara.jpg">
                 <span>05</span>
                 цветком
             </button>
 
             <button class="if-button"
+                    data-type="image"
                     data-title="персонажем"
-                    data-text="Тем самым персонажем, которого невозможно забыть."
-                    data-image="character.jpg">
+                    data-subtitle="Людмила Прокофьевна Калугина"
+                    data-text="Строгая начальница, которую сначала легко побаиваться. Но за этой строгостью — искренность, забота и настоящее человеческое тепло."
+                    data-image="kalugina.jpg">
                 <span>06</span>
                 персонажем
             </button>
@@ -378,16 +390,48 @@
 
         <div class="if-result">
 
-            <div class="if-image-wrap">
-                <img class="if-image" src="" alt="">
+            <div class="if-visual">
+
+                <div class="if-image-wrap">
+                    <img class="if-image" src="" alt="">
+                </div>
+
+                <div class="if-color"></div>
+
+                <div class="if-audio-box">
+                    <div class="if-music-icon">♪</div>
+
+                    <div class="if-music-info">
+                        <strong class="if-audio-title"></strong>
+                        <span>нажмите, чтобы послушать</span>
+                    </div>
+
+                    <audio class="if-audio" controls>
+                        <source src="" type="audio/mpeg">
+                    </audio>
+                </div>
+
             </div>
 
             <div class="if-result-text">
-                <span class="if-result-small">если бы была...</span>
-                <h3 class="if-result-title">выбери вариант</h3>
+
+                <span class="if-result-small">
+                    если бы была...
+                </span>
+
+                <h3 class="if-result-title">
+                    выберите вариант
+
+                </h3>
+
+                <span class="if-result-subtitle"></span>
+
                 <p class="if-result-description">
+
                     Здесь появится маленькая ассоциация.
+
                 </p>
+
             </div>
 
         </div>
@@ -526,5 +570,45 @@
 </section>
 
 <script src="script.js"></script>
+    <script>
+const ifButtons = document.querySelectorAll('.if-button');
+const ifResult = document.querySelector('.if-result');
+const ifImage = document.querySelector('.if-image');
+const ifTitle = document.querySelector('.if-result-title');
+const ifDescription = document.querySelector('.if-result-description');
+
+ifButtons.forEach(button => {
+
+    button.addEventListener('click', () => {
+
+        ifResult.classList.add('changing');
+
+        setTimeout(() => {
+
+            ifButtons.forEach(item => {
+                item.classList.remove('active');
+            });
+
+            button.classList.add('active');
+
+            const title = button.dataset.title;
+            const text = button.dataset.text;
+            const image = button.dataset.image;
+
+            ifTitle.textContent = title;
+            ifDescription.textContent = text;
+
+            ifImage.src = image;
+            ifImage.alt = 'Если бы Евгения Александровна была ' + title;
+
+            ifResult.classList.remove('changing');
+            ifResult.classList.add('has-image');
+
+        }, 250);
+
+    });
+
+});
+</script>
 </body>
 </html>
